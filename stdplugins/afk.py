@@ -1,117 +1,209 @@
-"""AFK Plugin for @UniBorg
-Syntax: .afk REASON"""
 import asyncio
 import datetime
-from telethon import events
-from telethon.tl import functions, types
+import os
+import time
+
+from telethon.events import StopPropagation
+from telethon.tl import types, functions
+from typing import Tuple
+
+from userbot import client
+from userbot.plugins import plugins_data
+from userbot.utils.helpers import _humanfriendly_seconds, get_chat_link
+from userbot.utils.events import NewMessage
 
 
-borg.storage.USER_AFK = {}  # pylint:disable=E0602
-borg.storage.afk_time = None  # pylint:disable=E0602
-borg.storage.last_afk_message = {}  # pylint:disable=E0602
+DEFAULT_MUTE_SETTINGS = types.InputPeerNotifySettings(
+    silent=True,
+    mute_until=datetime.timedelta(days=365)
+)
+AFK = plugins_data.AFK
+AFK.privates = plugins_data.load_data('userbot_afk_privates')
+AFK.groups = plugins_data.load_data('userbot_afk_groups')
+AFK.sent = plugins_data.load_data('userbot_afk_sent')
 
 
-@borg.on(events.NewMessage(outgoing=True))  # pylint:disable=E0602
-async def set_not_afk(event):
-    current_message = event.message.message
-    if ".afk" not in current_message and "yes" in borg.storage.USER_AFK:  # pylint:disable=E0602
-        try:
-            await borg.send_message(  # pylint:disable=E0602
-                Config.PRIVATE_GROUP_BOT_API_ID,  # pylint:disable=E0602
-                "⬛⬛⬛⬛⬛\n⬛☑️☑️☑️⬛\n⬛☑️☑️☑️⬛\n⬛☑️☑️☑️⬛\n⬛⬛⬛⬛⬛"
-            )
-        except Exception as e:  # pylint:disable=C0103,W0703
-            await borg.send_message(  # pylint:disable=E0602
-                event.chat_id,
-                "Please set `PRIVATE_GROUP_BOT_API_ID` " + \
-                "for the proper functioning of afk functionality " + \
-                "in @UniBorg\n\n `{}`".format(str(e)),
-                reply_to=event.message.id,
-                silent=True
-            )
-        borg.storage.USER_AFK = {}  # pylint:disable=E0602
-        borg.storage.afk_time = None  # pylint:disable=E0602
+@client.onMessage(
+    command="afk",
+    outgoing=True, regex="afk(?: |$)(.*)?$"
+)
+async def awayfromkeyboard(event: NewMessage.Event) -> None:
+    """Set your status as AFK until you send a message again."""
+    arg = event.matches[0].group(1)
+    os.environ['userbot_afk'] = time.time().__str__()
+    text = "**I am AFK!**"
+    if arg:
+        os.environ['userbot_afk_reason'] = arg.strip()
+        text += f"\n**Reason:** __{arg.strip()}__"
+    extra = await get_chat_link(event, event.id)
+    await event.answer(
+        text,
+        log=("afk", f"You just went AFK in {extra}!")
+    )
+    raise StopPropagation
 
 
-@borg.on(events.NewMessage(pattern=r"\.afk ?(.*)", outgoing=True))  # pylint:disable=E0602
-async def _(event):
-    if event.fwd_from:
+@client.onMessage(outgoing=True, forwards=None)
+async def out_listner(event: NewMessage.Event) -> None:
+    """Handle your AFK status by listening to new outgoing messages."""
+    if event.from_scheduled or not os.environ.pop('userbot_afk', False):
         return
-    reason = event.pattern_match.group(1)
-    if not borg.storage.USER_AFK:  # pylint:disable=E0602
-        last_seen_status = await borg(  # pylint:disable=E0602
-            functions.account.GetPrivacyRequest(
-                types.InputPrivacyKeyStatusTimestamp()
-            )
+    os.environ.pop('userbot_afk_reason', None)
+
+    def_text = "`You received no messages nor were tagged at any time.`"
+    pr_text = ''
+    pr_log = ''
+    gr_text = ''
+    gr_log = ''
+
+    if AFK.privates:
+        total_mentions = 0
+        to_log = []
+        pr_log = "**Mentions received from private chats:**\n"
+        for key, value in AFK.privates.items():
+            await _update_notif_settings(key, value['PeerNotifySettings'])
+            total_mentions += len(value['mentions'])
+            msg = "  `{} total mentions from `[{}](tg://user?id={})`.`"
+            to_log.append(msg.format(
+                len(value['mentions']), value['title'], key
+            ))
+
+        pr_text = "`Received {} message{} from {} private chat{}.`".format(
+            *(await _correct_grammer(total_mentions, len(AFK.privates)))
         )
-        if isinstance(last_seen_status.rules, types.PrivacyValueAllowAll):
-            borg.storage.afk_time = datetime.datetime.now()  # pylint:disable=E0602
-        borg.storage.USER_AFK.update({"yes": reason})  # pylint:disable=E0602
-        if reason:
-            await event.edit(f"⬛⬛⬛⬛⬛\n⬛✅✅✅⬛\n⬛✅✅✅⬛\n⬛✅✅✅⬛\n⬛⬛⬛⬛⬛")
-        else:
-            await event.edit(f"Set AFK mode to True")
-        await asyncio.sleep(5)
-        await event.delete()
-        try:
-            await borg.send_message(  # pylint:disable=E0602
-                Config.PRIVATE_GROUP_BOT_API_ID,  # pylint:disable=E0602
-                f"Set AFK mode to True, and Reason is {reason}"
-            )
-        except Exception as e:  # pylint:disable=C0103,W0703
-            logger.warn(str(e))  # pylint:disable=E0602
+        pr_log = pr_log + "\n".join("  " + t for t in to_log)
+    if AFK.groups:
+        total_mentions = 0
+        to_log = []
+        gr_log = "\n**Mentions Received from groups:**\n"
+        for key, value in AFK.groups.items():
+            await _update_notif_settings(key, value['PeerNotifySettings'])
+            total_mentions += len(value['mentions'])
+            chat_msg_id = f"https://t.me/c/{key}/{value['unread_from']}"
+            msg = f"[{value['title']}]({chat_msg_id}):"
+            msg += "\n    `Mentions: `"
+            mentions = []
+            for i in range(len(value['mentions'])):
+                msg_id = value['mentions'][i]
+                mentions.append(f"[{i + 1}](https://t.me/c/{key}/{msg_id})")
+            msg += ',   '.join(mentions) + '.'
+            to_log.append(msg)
+
+        gr_text = "`Received {} mention{} from {} group{}.`".format(
+            *(await _correct_grammer(total_mentions, len(AFK.groups)))
+        )
+        gr_log = gr_log + "\n".join("  " + t for t in to_log)
+
+    main_text = '\n'.join([pr_text, gr_text]).strip()
+    if not client.logger:
+        main_text += "\n`Use a logger group for more detailed AFK mentions!`"
+    status = await event.answer("`I am no longer AFK!`", reply_to=event.id)
+    toast = await event.answer(
+        message=main_text or def_text,
+        reply_to=status.id,
+        log=("afk", '\n'.join([pr_log, gr_log]).strip() or def_text)
+    )
+
+    for chat, msg in AFK.sent.items():
+        msgs = [m for m, _ in msg]
+        await client.delete_messages(chat, msgs)
+    AFK.privates.clear()
+    AFK.groups.clear()
+    AFK.sent.clear()
+    await asyncio.sleep(4)
+    await toast.delete()
+    await status.delete()
 
 
-@borg.on(events.NewMessage(  # pylint:disable=E0602
-    incoming=True,
-    func=lambda e: bool(e.mentioned or e.is_private)
-))
-async def on_afk(event):
-    if event.fwd_from:
+@client.onMessage(incoming=True, edited=False)
+async def inc_listner(event: NewMessage.Event) -> None:
+    """Handle tags and new messages by listening to new incoming messages."""
+    sender = await event.get_sender()
+    if event.from_scheduled or (isinstance(sender, types.User) and sender.bot):
         return
-    afk_since = "**a while ago**"
-    current_message_text = event.message.message.lower()
-    if "afk" in current_message_text:
-        # userbot's should not reply to other userbot's
-        # https://core.telegram.org/bots/faq#why-doesn-39t-my-bot-see-messages-from-other-bots
-        return False
-    if borg.storage.USER_AFK and not (await event.get_sender()).bot:  # pylint:disable=E0602
-        reason = borg.storage.USER_AFK["yes"]  # pylint:disable=E0602
-        if borg.storage.afk_time:  # pylint:disable=E0602
-            now = datetime.datetime.now()
-            datime_since_afk = now - borg.storage.afk_time  # pylint:disable=E0602
-            time = float(datime_since_afk.seconds)
-            days = time // (24 * 3600)
-            time = time % (24 * 3600)
-            hours = time // 3600
-            time %= 3600
-            minutes = time // 60
-            time %= 60
-            seconds = time
-            if days == 1:
-                afk_since = "**Yesterday**"
-            elif days > 1:
-                if days > 6:
-                    date = now + \
-                        datetime.timedelta(
-                            days=-days, hours=-hours, minutes=-minutes)
-                    afk_since = date.strftime("%A, %Y %B %m, %H:%I")
-                else:
-                    wday = now + datetime.timedelta(days=-days)
-                    afk_since = wday.strftime('%A')
-            elif hours > 1:
-                afk_since = f"`{int(hours)}h{int(minutes)}m` **ago**"
-            elif minutes > 0:
-                afk_since = f"`{int(minutes)}m{int(seconds)}s` **ago**"
-            else:
-                afk_since = f"`{int(seconds)}s` **ago**"
-        msg = None
-        message_to_reply = f"I am AFK right-now  \n\n**Last Seen: {afk_since} I don't wanted to tell you, but..** " + \
-            f"\n\n__Reason:__ {reason}" \
-            if reason \
-            else f" {afk_since}......\n\n**My**\n\n[King gone to meet Salman Khan, i don't know why ?](https://i.imgur.com/ZaVPQaA.jpg) "
-        msg = await event.reply(message_to_reply)
-        await asyncio.sleep(5)
-        if event.chat_id in borg.storage.last_afk_message:  # pylint:disable=E0602
-            await borg.storage.last_afk_message[event.chat_id].delete()  # pylint:disable=E0602
-        borg.storage.last_afk_message[event.chat_id] = msg  # pylint:disable=E0602
+
+    afk = os.environ.get('userbot_afk', False)
+    if not (afk and (event.is_private or event.mentioned)):
+        return
+
+    since = datetime.datetime.fromtimestamp(
+        float(afk),
+        tz=datetime.timezone.utc
+    )
+    now = datetime.datetime.now(datetime.timezone.utc)
+    reason = os.environ.get('userbot_afk_reason', False)
+    elapsed = await _humanfriendly_seconds((now - since).total_seconds())
+    text = "`I am currently AFK{}.`\n`Last seen: {} ago.`".format(
+        ' because ' + reason if reason else '', elapsed
+    )
+
+    chat = await event.get_chat()
+    if event.is_private:
+        await _append_msg(AFK.privates, chat.id, event.id)
+    else:
+        await _append_msg(AFK.groups, chat.id, event.id)
+
+    if chat.id in AFK.sent:
+        # Default timeout is 150 seconds / 2.5 minutes
+        if round((now - AFK.sent[chat.id][-1][1]).total_seconds()) <= 150:
+            return
+
+    result = await event.answer(message=text, reply_to=None)
+    AFK.sent.setdefault(chat.id, []).append((result.id, result.date))
+
+
+async def _append_msg(variable: dict, chat: int, event: int) -> None:
+    if chat in variable:
+        variable[chat]['mentions'].append(event)
+    else:
+        notif = await client(functions.account.GetNotifySettingsRequest(
+            peer=chat
+        ))
+        notif = types.InputPeerNotifySettings(**vars(notif))
+        await _update_notif_settings(chat)
+        async for dialog in client.iter_dialogs():
+            if chat == dialog.entity.id:
+                title = getattr(dialog, 'title', dialog.name)
+                unread_count = dialog.unread_count
+                last_msg = dialog.message.id
+                break
+        x = 1
+        messages = []
+        async for message in client.iter_messages(
+            chat,
+            max_id=last_msg
+        ):
+            if x >= unread_count:
+                if not messages:
+                    messages.append(message.id)
+                break
+            if not message.out:
+                x = x + 1
+                messages.append(message.id)
+        variable[chat] = {
+            'title': title,
+            'unread_from': messages[-1],
+            'mentions': [event],
+            'PeerNotifySettings': notif
+        }
+        messages.clear()
+
+
+async def _update_notif_settings(
+    peer: int,
+    settings: types.InputPeerNotifySettings = DEFAULT_MUTE_SETTINGS
+) -> None:
+    await client(functions.account.UpdateNotifySettingsRequest(
+        peer=peer,
+        settings=settings
+    ))
+
+
+async def _correct_grammer(
+    mentions: int, chats: int
+) -> Tuple[str, str, str, str]:
+    a1 = "one" if mentions == 1 else mentions
+    a2 = '' if mentions == 1 else 's'
+    a3 = "one" if chats == 1 else chats
+    a4 = '' if chats == 1 else 's'
+    return a1, a2, a3, a4
