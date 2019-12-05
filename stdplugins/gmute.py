@@ -5,9 +5,7 @@
 
 from telethon import events
 import asyncio
-from uniborg.util import admin_cmd
-
-	logging.error(str(e))	
+from uniborg.util import admin_cmd	
 
 @borg.on(admin_cmd(pattern="gmute ?(.*)", allow_sudo=True))
 async def gmute_user(event):
