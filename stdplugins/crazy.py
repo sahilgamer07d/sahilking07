@@ -1,6 +1,6 @@
 # (c) @UniBorg
 # Original edit by @AyushChatterjee
-""".sun Plugin for @BotHub"""
+""".crazy Plugin for @BotHub"""
 
 
 from telethon import events
@@ -8,7 +8,7 @@ import asyncio
 from collections import deque
 
 
-@borg.on(events.NewMessage(pattern=r"\.sun", outgoing=True))
+@borg.on(events.NewMessage(pattern=r"\.crazy", outgoing=True))
 async def _(event):
 	if event.fwd_from:
 		return
