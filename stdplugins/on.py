@@ -9,7 +9,7 @@ from uniborg.util import admin_cmd
 async def _(event):
     if event.fwd_from:
         return
-    mentions =       "`i am ON My Mastor \n\nbotdo is ON \n\nTelethon version: 1.10.10 \n\nPython: 3.8.2 \n--------------------------- \nUser: is the one who is using it \n\nCreator: Mayur Karaniya \n\nOwner: 3Cube TeKnoways \n\nUserbot: testuserbot \n\nDatabase Status: Basiclly Telegram Databases functioning is normal! just sometimes it creates hoax!`"
+    mentions =       "`I AM RUNNING DON'T WORRY MASTER\nI WOULD DIE RATHER THAN DISCONNECT !\n\nTelethon version: 1.10.10\nPython: 3.8.2\nMy Master: @AyushChatterjee\nDatabase Status: Databases Working Fine`"
     chat = await event.get_input_chat()
     async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
         mentions += f""
