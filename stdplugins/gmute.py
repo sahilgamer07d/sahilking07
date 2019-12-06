@@ -1,39 +1,36 @@
-try:
-    from stdplugins import SESSION, BASE
-except ImportError:
-    raise AttributeError
-
-from sqlalchemy import Column, String, UnicodeText
+from telethon import events
+import asyncio
+from uniborg.util import admin_cmd
 
 
-class GMute(BASE):
-    __tablename__ = "gmute"
-    sender = Column(String(14), primary_key=True)
-
-    def __init__(self, sender):
-        self.sender = str(sender)
-
-
-GMute.__table__.create(checkfirst=True)
-
-
-def is_gmuted(sender_id):
-    try:
-        return SESSION.query(GMute).all()
-    except BaseException:
-        return None
-    finally:
-        SESSION.close()
+@borg.on(admin_cmd("gmute ?(.*)"))
+async def _(event):
+    if event.fwd_from:
+        return
+    reason = event.pattern_match.group(1)
+    if event.reply_to_msg_id:
+        r = await event.get_reply_message()
+        if r.forward:
+            r_from_id = r.forward.from_id or r.from_id
+        else:
+            r_from_id = r.from_id
+        await borg.send_message(
+            Config.G_MUTE_LOGGER_GROUP,
+            "!gban [user](tg://user?id={}) {}".format(r_from_id, reason)
+        )
+    await event.delete()
 
 
-def gmute(sender):
-    adder = GMute(str(sender))
-    SESSION.add(adder)
-    SESSION.commit()
-
-
-def ungmute(sender):
-    rem = SESSION.query(GMute).get((str(sender)))
-    if rem:
-        SESSION.delete(rem)
-        SESSION.commit()
+@borg.on(admin_cmd("ungmute ?(.*)"))
+async def _(event):
+    if event.fwd_from:
+        return
+    reason = event.pattern_match.group(1)
+    if event.reply_to_msg_id:
+        r = await event.get_reply_message()
+        r_from_id = r.from_id
+        await borg.send_message(
+            Config.G_MUTE_LOGGER_GROUP,
+            "!ungmute [user](tg://user?id={}) {}".format(r_from_id, reason)
+        )
+    await event.delete()
