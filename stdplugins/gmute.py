@@ -1,19 +1,3 @@
-"""
-G-Muter Plugin for userbot. //
-cmds: .gmute user_id|reply to user messsage	//G-Mutes a User.
-	  .ungmute user_id|reply to user messsage //Un-Gmutes a User.
-	  .listgmuted //List Currently G-Muted Users.
-
-By:- AyushChatterjee 
-
-
-"""
-from telethon import events
-import logging
-import asyncio
-import sqlalchemy
-import sys
-from uniborg.util import admin_cmd
 try:
     from userbot.modules.sql_helper import SESSION, BASE
 except ImportError:
