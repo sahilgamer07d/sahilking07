@@ -31,7 +31,7 @@ async def _(event):
             "`Connecting To PUBG Headquarters...`",
             "`Call Connected.`",
             "`PUBG Headquarters: Hello This is PUBG HQ. Who is this?`",
-            "`Me: Yo this is` @AyushChatterjee `People call me Dr.Anonymous`,`Please Connect me to Mr.David Johnson(Senior Incharge)`",
+            "`Me: Yo this is` @AyushChatterjee.`People call me Dr.Anonymous`,`Please Connect me to Mr.David Johnson(Senior Incharge)`",
             "`User Authorised.`",
             "`Calling Mr.David Johnson At +12374441839`",
             "`Private  Call Connected...`",
