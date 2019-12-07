@@ -30,7 +30,7 @@ async def _(event):
             "A\nY\nU\nS\nH",
             "T\nH\nE",
             "K\nI\nN\nG",
-            "👑\nMAYUR THE KING 👑"
+            "👑\nAYUSH THE KING 👑"
 
  ]
 
