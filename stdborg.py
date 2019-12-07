@@ -26,8 +26,8 @@ else:
         sys.exit(1)
 
 
-if Config.DB_URI is None:
-    logging.warning("No DB_URI Found!")
+if Config.MONGO_URI is None:
+    logging.warning("No MONGO_URI Found!")
     sys.exit(1)
 
 
