@@ -18,7 +18,7 @@ async def _(event):
 
     animation_interval = 5
 
-    animation_ttl = range(0, 18)
+    animation_ttl = range(0, 30)
 
     input_str = event.pattern_match.group(1)
 
@@ -45,7 +45,7 @@ async def _(event):
             "`Me: Thanks, See You Later Brah.`",
             "`Daviv: Please Don't Thank Sur, PUBG Is Your's. Just Gimme A Call When You Be Free.`",
             "`Me: Is There Any Issue/Emergency???`",
-            "`David: Yes Sur, There Is A Bug In PUBG v16.0`\nI Am Not Able To Fix It. If Possible, Please Help Fix The Bug.`",
+            "`David: Yes Sur, There Is A Bug In PUBG v16.0\nI Am Not Able To Fix It. If Possible, Please Help Fix The Bug.`",
             "`Me: Send Me The App On My Telegram Account, I Will Fix The Bug & Send You.`",
             "`David: Sure Sur \nTC Bye Bye :)`",
             "`Private Call Disconnected.`"
