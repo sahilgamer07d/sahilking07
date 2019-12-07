@@ -39,9 +39,9 @@ async def _(event):
             "`David: May I Know Who Is This?`",
             "`Me: Yo Brah, I Am` @AyushChatterjee,`You may ask Bendan Greene about my name`",
             "`David: OMG!!! I Am FAN Of You Sir...\nI'll Make Sure That Account Will Be Unbanned Within 24Hrs With All Of Its Stats Maintained.`",
-            "`David: May I Know Why Was Your Account Banned ?`"
-            "`Me: Ya Brah For Hacking`"
-            "`David: Ohh, Sir We Are Extremely Sorry We'll Never Ban Your Account Again.Now You Can Apply Hacks Without Any Protection`"
+            "`David: May I Know Why Was Your Account Banned ?`",
+            "`Me: Ya Brah For Hacking`",
+            "`David: Ohh, Sir We Are Extremely Sorry We'll Never Ban Your Account Again.Now You Can Apply Hacks Without Any Protection`",
             "`Me: Thanks, See You Later Brah.`",
             "`Daviv: Please Don't Thank Sur, PUBG Is Your's. Just Gimme A Call When You Be Free.`",
             "`Me: Is There Any Issue/Emergency???`",
