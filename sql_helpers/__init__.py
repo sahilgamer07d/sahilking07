@@ -14,7 +14,7 @@ else:
 
 
 def start() -> scoped_session:
-    engine = create_engine(Config.DB_URI)
+    engine = create_engine(Config.MONGO_URI)
     BASE.metadata.bind = engine
     BASE.metadata.create_all(engine)
     return scoped_session(sessionmaker(bind=engine, autoflush=False))
