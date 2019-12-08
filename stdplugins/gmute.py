@@ -1,11 +1,9 @@
 """
-G-Muter Plugin for userbot. //Needs MongoDB to work.
-cmds: .gmute user_id|reply to user messsage	//G-Mutes a User.
-	  .ungmute user_id|reply to user messsage //Un-Gmutes a User.
-	  .listgmuted //List Currently G-Muted Users.
+cmds: .gmute user_id|Reply to user messsage.	
+      .ungmute user_id|Reply to user messsage. 
+      .listgmuted|List Currently G-Muted Users.
 
-By:- JaskaranSM ( @Zero_cool7870 )
-
+By:- @AyushChatterjee
 """
 
 from telethon import events
@@ -16,7 +14,8 @@ logging.basicConfig(level=logging.INFO)
 MONGO_URI = Config.MONGO_URI
 try:	
 	db = mongo_client['test']
-	muted = db.muted
+	muted = db
+
 except Exception as e:
 	logging.error(str(e))	
 
