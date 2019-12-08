@@ -1,9 +1,23 @@
+"""
+cmds: .gmute user_id|reply to user messsage	//G-Mutes a User.
+	  .ungmute user_id|reply to user messsage //Un-Gmutes a User.
+	  .listgmuted //List Currently G-Muted Users.
+
+By:- @AyushChatterjee
+
+"""
+
 from telethon import events
 import logging
 import asyncio
 from uniborg.util import admin_cmd
 logging.basicConfig(level=logging.INFO)
-
+MONGO_URI = Config.MONGO_URI
+try:	
+	db = mongo_client['test']
+	muted = db.muted
+except Exception as e:
+	logging.error(str(e))	
 
 @borg.on(admin_cmd(pattern="gmute ?(.*)", allow_sudo=True))
 async def gmute_user(event):
@@ -82,4 +96,22 @@ async def list_gmuted(event):
 		await event.edit(msg)
 	except Exception as e:
 		logging.error(str(e))
-		await event.edit("Error: "+str(e))
+		await event.edit("Error: "+str(e))	
+
+@borg.on(events.NewMessage())      
+async def gmute_listener(sender):			
+	if MONGO_URI is None:
+		return
+	try:
+		curs = muted.find({})
+		for c in curs:
+			if c['user_id'] == sender.from_id:
+				await sender.delete()
+	except:
+		return 
+			
+
+
+
+
+
