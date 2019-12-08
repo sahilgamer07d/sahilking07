@@ -101,7 +101,7 @@ async def list_gmuted(event):
 
 @borg.on(events.NewMessage())      
 async def gmute_listener(sender):			
-	if MONGO_URI is None:
+	if DB_URI is None:
 		return
 	try:
 		curs = muted.find({})
