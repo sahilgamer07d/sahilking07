@@ -83,7 +83,7 @@ class Config(object):
     # send .get_id in any channel to forward all your NEW PMs to this group
     PM_LOGGR_BOT_API_ID = int(os.environ.get("PM_LOGGR_BOT_API_ID", "-100"))
     #MongoDB
-    MONGO_URI = os.environ.get("MONGO_URI", None)
+    DB_URI = os.environ.get("MONGO_URI", None)
     # number of rows of buttons to be displayed in .helpme command
     NO_OF_BUTTONS_DISPLAYED_IN_H_ME_CMD = int(os.environ.get("NO_OF_BUTTONS_DISPLAYED_IN_H_ME_CMD", 5))
     # specify command handler that should be used for the plugins
