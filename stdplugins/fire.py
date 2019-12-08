@@ -23,7 +23,6 @@ async def _(event):
         await event.edit(input_str)
 
         animation_chars = [
-
             "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥",
             "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥",
             "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥",
@@ -40,8 +39,6 @@ async def _(event):
             "🔥"
       ]
 
-for i in animation_ttl:
-
+        for i in animation_ttl:
             await asyncio.sleep(animation_interval)
-
             await event.edit(animation_chars[i % 25])
