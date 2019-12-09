@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 MONGO_URI = Config.MONGO_URI
 try:	
 	db = mongo_client['test']
-	muted = db
+	db = db.muted
 
 except Exception as e:
 	logging.error(str(e))	
