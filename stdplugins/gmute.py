@@ -22,9 +22,6 @@ from telethon.tl.types import (PeerChannel, ChannelParticipantsAdmins,
                                MessageEntityMentionName, MessageMediaPhoto,
                                ChannelParticipantsBots)
 
-from uniborg import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
-from uniborg.events import register
-
 @borg.on(outgoing=True, pattern="^.ungmute(?: |$)(.*)", groups_only=True)
 async def ungmoot(un_gmute):
     """ For .ungmute command, ungmutes the target in the userbot """
@@ -104,9 +101,3 @@ async def gspider(gspdr):
             await gspdr.edit(f"`Globally taped!`Reason: {reason}")
         else:
             await gspdr.edit("`Globally taped!`")
-
-        if BOTLOG:
-            await gspdr.client.send_message(
-                BOTLOG_CHATID, "#GMUTE\n"
-                f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-                f"CHAT: {gspdr.chat.title}(`{gspdr.chat_id}`)")
