@@ -5,9 +5,8 @@ cmds: .gmute user_id|Reply to user messsage.
 By:- @AyushChatterjee
 """
 
-from asyncio import sleep
-from os import remove
-
+import asyncio
+from uniborg.util import admin_cmd
 from telethon.errors import (BadRequestError, ChatAdminRequiredError,
                              ImageProcessFailedError, PhotoCropSizeSmallError,
                              UserAdminInvalidError)
@@ -22,7 +21,7 @@ from telethon.tl.types import (PeerChannel, ChannelParticipantsAdmins,
                                MessageEntityMentionName, MessageMediaPhoto,
                                ChannelParticipantsBots)
 
-@borg.on(outgoing=True, pattern="^.ungmute(?: |$)(.*)", groups_only=True)
+@borg.on(admin_cmd("ungmute ?(.*)"))
 async def ungmoot(un_gmute):
     """ For .ungmute command, ungmutes the target in the userbot """
     # Admin or creator check
@@ -64,8 +63,7 @@ async def ungmoot(un_gmute):
                 f"USER: [{user.first_name}](tg://user?id={user.id})\n"
                 f"CHAT: {un_gmute.chat.title}(`{un_gmute.chat_id}`)")
 
-
-@borg.on(outgoing=True, pattern="^.gmute(?: |$)(.*)", groups_only=True)
+@borg.on(admin_cmd("gmute ?(.*)"))
 async def gspider(gspdr):
     """ For .gmute command, globally mutes the replied/tagged person """
     # Admin or creator check
