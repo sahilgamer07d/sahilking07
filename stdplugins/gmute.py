@@ -5,6 +5,25 @@ cmds: .gmute user_id|Reply to user messsage.
 By:- @AyushChatterjee
 """
 
+from asyncio import sleep
+from os import remove
+
+from telethon.errors import (BadRequestError, ChatAdminRequiredError,
+                             ImageProcessFailedError, PhotoCropSizeSmallError,
+                             UserAdminInvalidError)
+from telethon.errors.rpcerrorlist import (UserIdInvalidError,
+                                          MessageTooLongError)
+from telethon.tl.functions.channels import (EditAdminRequest,
+                                            EditBannedRequest,
+                                            EditPhotoRequest)
+from telethon.tl.functions.messages import UpdatePinnedMessageRequest
+from telethon.tl.types import (PeerChannel, ChannelParticipantsAdmins,
+                               ChatAdminRights, ChatBannedRights,
+                               MessageEntityMentionName, MessageMediaPhoto,
+                               ChannelParticipantsBots)
+
+from sql_helpers BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from sql_helpers import register
 
 @borg.on(outgoing=True, pattern="^.ungmute(?: |$)(.*)", groups_only=True)
 async def ungmoot(un_gmute):
