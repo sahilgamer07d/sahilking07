@@ -19,7 +19,7 @@ async def _(event):
     if input_str == "shrug":
         await event.edit("¯\_(ツ)_/¯")
     elif input_str == "apple":
-        await event.edit("\uF8FF")
+        await event.edit("🍎")
     elif input_str == ":/":
         await event.edit(input_str)
         animation_chars = [
