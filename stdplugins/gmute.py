@@ -22,8 +22,8 @@ from telethon.tl.types import (PeerChannel, ChannelParticipantsAdmins,
                                MessageEntityMentionName, MessageMediaPhoto,
                                ChannelParticipantsBots)
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
-from userbot.events import register
+from uniborg import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from uniborg.events import register
 
 @borg.on(outgoing=True, pattern="^.ungmute(?: |$)(.*)", groups_only=True)
 async def ungmoot(un_gmute):
