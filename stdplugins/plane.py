@@ -1,3 +1,7 @@
+"".plane plugin for @Userbot
+Made by @AyushChatterjee
+""
+
 from telethon import events
 import asyncio
 import os
