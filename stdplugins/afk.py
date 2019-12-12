@@ -30,9 +30,9 @@ async def set_not_afk(event):
         except Exception as e:  # pylint:disable=C0103,W0703
             await borg.send_message(  # pylint:disable=E0602
                 event.chat_id,
-                "Please set `PRIVATE_GROUP_BOT_API_ID` " + \
+                "Please set PRIVATE_GROUP_BOT_API_ID " + \
                 "for the proper functioning of afk functionality " + \
-                "in @UniBorg\n\n `{}`".format(str(e)),
+                "in @UniBorg\n\n {}".format(str(e)),
                 reply_to=event.message.id,
                 silent=True
             )
@@ -86,7 +86,7 @@ async def on_afk(event):
     global USER_AFK  # pylint:disable=E0602
     global afk_time  # pylint:disable=E0602
     global last_afk_message  # pylint:disable=E0602
-    afk_since = "**a while ago**"
+    afk_since = "a while ago"
     current_message_text = event.message.message.lower()
     if "afk" in current_message_text:
         # userbot's should not reply to other userbot's
@@ -105,9 +105,9 @@ async def on_afk(event):
             time %= 60
             seconds = time
             if days == 1:
-                afk_since = "**Yesterday**"
+                afk_since = "Yesterday"
             elif days > 1:
-                if days > 6:
+if days > 6:
                     date = now + \
                         datetime.timedelta(
                             days=-days, hours=-hours, minutes=-minutes)
@@ -116,16 +116,16 @@ async def on_afk(event):
                     wday = now + datetime.timedelta(days=-days)
                     afk_since = wday.strftime('%A')
             elif hours > 1:
-                afk_since = f"`{int(hours)}h{int(minutes)}m` **ago**"
+                afk_since = f"{int(hours)}h{int(minutes)}m ago"
             elif minutes > 0:
-                afk_since = f"`{int(minutes)}m{int(seconds)}s` **ago**"
+                afk_since = f"{int(minutes)}m{int(seconds)}s ago"
             else:
-                afk_since = f"`{int(seconds)}s` **ago**"
+                afk_since = f"{int(seconds)}s ago"
         msg = None
-        message_to_reply = f"MY MASTER **AYUSH** IS **AFK** SINCE : {afk_time} " + \
-            f"\n\n__I HAVE INFORMED HIM OF YOUR MESSAGE !__\n\n**REASON FOR HIS AFK : ** {reason}" \
+        message_to_reply = f"MY MASTER AYUSH IS AFK SINCE : {afk_since} " + \
+            f"\n\nI HAVE INFORMED HIM OF YOUR MESSAGE !\n\nREASON FOR HIS AFK :  {reason}" \
             if reason \
-            else f"MY MASTER **AYUSH** IS **AFK** SINCE : {afk_time} ; PLEASE WAIT FOR HIS RETURN.\n\n**THANKS**"
+            else f"MY MASTER AYUSH IS AFK SINCE : {afk_since} ; PLEASE WAIT FOR HIS RETURN.\n\nTHANKS"
         msg = await event.reply(message_to_reply)
         await asyncio.sleep(5)
         if event.chat_id in last_afk_message:  # pylint:disable=E0602
