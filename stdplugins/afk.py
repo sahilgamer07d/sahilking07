@@ -107,7 +107,7 @@ async def on_afk(event):
             if days == 1:
                 afk_since = "Yesterday"
             elif days > 1:
-if days > 6:
+                if days > 6:
                     date = now + \
                         datetime.timedelta(
                             days=-days, hours=-hours, minutes=-minutes)
