@@ -22,7 +22,7 @@ async def _(event):
             Config.G_BAN_LOGGER_GROUP,
             "!gban [user](tg://user?id={}) {}".format(r_from_id, reason)
         )
-    await event.edit("GLOBALLY TAPED 😘")
+    await event.edit("`GLOBALLY TAPED 😘`")
 
 
 @borg.on(admin_cmd("ungban ?(.*)"))
@@ -37,4 +37,4 @@ async def _(event):
             Config.G_BAN_LOGGER_GROUP,
             "!ungban [user](tg://user?id={}) {}".format(r_from_id, reason)
         )
-    await event.edit("UNGBANNED USER SUCCESSFULLY")
+    await event.edit("`UNGBANNED USER SUCCESSFULLY !`")
