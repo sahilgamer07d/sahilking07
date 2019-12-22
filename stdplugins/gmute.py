@@ -43,7 +43,7 @@ async def ungmoot(un_gmute):
         await un_gmute.edit("```Ungmuted Successfully```")
 
 
-@borg.on(admin_cmd("ungmute ?(.*)"))
+@borg.on(admin_cmd("gmute ?(.*)"))
 async def gspider(gspdr):
     
     # Admin or creator check
