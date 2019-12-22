@@ -1,3 +1,7 @@
+"""Plugin for .gmute 
+Made for BotHub By @AyushChatterjee
+"""
+
 from uniborg.util import admin_cmd
 from telethon import events
 import asyncio
