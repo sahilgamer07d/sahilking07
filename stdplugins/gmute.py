@@ -1,4 +1,4 @@
-@register(outgoing=True, pattern="^.ungmute(?: |$)(.*)", groups_only=True)
+@borg.on(outgoing=True, pattern="^.ungmute(?: |$)(.*)", groups_only=True)
 async def ungmoot(un_gmute):
     """ For .ungmute command, ungmutes the target in the userbot """
     # Admin or creator check
@@ -41,7 +41,7 @@ async def ungmoot(un_gmute):
                 f"CHAT: {un_gmute.chat.title}(`{un_gmute.chat_id}`)")
 
 
-@register(outgoing=True, pattern="^.gmute(?: |$)(.*)", groups_only=True)
+@borg.on(outgoing=True, pattern="^.gmute(?: |$)(.*)", groups_only=True)
 async def gspider(gspdr):
     """ For .gmute command, globally mutes the replied/tagged person """
     # Admin or creator check
