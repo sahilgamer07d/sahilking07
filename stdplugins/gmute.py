@@ -38,10 +38,6 @@ async def ungmoot(un_gmute):
         # Inform about success
         await un_gmute.edit("```Ungmuted Successfully```")
 
-        await borg.send_message(
-            Config.G_BAN_LOGGER_GROUP,
-            "!ungmute [user](tg://user?id={}) {}".format(r_from_id, reason)
-        )
 
 @borg.on(admin_cmd("ungmute ?(.*)"))
 async def gspider(gspdr):
@@ -79,8 +75,3 @@ async def gspider(gspdr):
             await gspdr.edit(f"`Globally taped!`Reason: {reason}")
         else:
             await gspdr.edit("`Globally taped!`")
-           
-            await borg.send_message(
-            Config.G_BAN_LOGGER_GROUP,
-            "!gmute [user](tg://user?id={}) {}".format(r_from_id, reason)
-        )
