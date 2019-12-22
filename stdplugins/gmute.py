@@ -6,7 +6,7 @@ from uniborg.util import admin_cmd
 from telethon import events
 import asyncio
 
-@borg.on(admin_cmd(".ungmute"))
+@borg.on(admin_cmd("ungmute"))
 async def ungmoot(un_gmute):
 
     # Admin or creator check
