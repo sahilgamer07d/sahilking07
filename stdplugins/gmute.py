@@ -1,4 +1,14 @@
-@borg.on(admin_cmd("ungmute ?(.*)"), groups_only=True)
+from telethon import events
+import asyncio
+import os
+import sys
+
+
+@borg.on(events.NewMessage(pattern=r"\.ungmute", outgoing=True))
+async def _(event):
+    if event.fwd_from:
+        return
+
 async def ungmoot(un_gmute):
     """ For .ungmute command, ungmutes the target in the userbot """
     # Admin or creator check
@@ -40,7 +50,11 @@ async def ungmoot(un_gmute):
                 f"USER: [{user.first_name}](tg://user?id={user.id})\n"
                 f"CHAT: {un_gmute.chat.title}(`{un_gmute.chat_id}`)")
 
-@borg.on(admin_cmd("gmute ?(.*)"), groups_only=True)
+@borg.on(events.NewMessage(pattern=r"\.bombs", outgoing=True))
+async def _(event):
+    if event.fwd_from:
+        return
+
 async def gspider(gspdr):
     """ For .gmute command, globally mutes the replied/tagged person """
     # Admin or creator check
