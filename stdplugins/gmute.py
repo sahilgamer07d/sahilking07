@@ -4,7 +4,7 @@ import asyncio
 
 @borg.on(admin_cmd("ungmute ?(.*)"), outgoing=True)
 async def ungmoot(un_gmute):
-    """ For .ungmute command, ungmutes the target in the userbot """
+
     # Admin or creator check
     chat = await un_gmute.get_chat()
     admin = chat.admin_rights
@@ -17,7 +17,7 @@ async def ungmoot(un_gmute):
 
     # Check if the function running under SQL mode
     try:
-        from userbot.modules.sql_helper.gmute_sql import ungmute
+        from sql_helpers.gmute_sql import ungmute
     except AttributeError:
         await un_gmute.edit(NO_SQL)
         return
@@ -40,12 +40,12 @@ async def ungmoot(un_gmute):
 
         await borg.send_message(
             Config.G_BAN_LOGGER_GROUP,
-            "!gban [user](tg://user?id={}) {}".format(r_from_id, reason)
+            "!ungmute [user](tg://user?id={}) {}".format(r_from_id, reason)
         )
 
 @borg.on(admin_cmd("ungmute ?(.*)"), outgoing=True)
 async def gspider(gspdr):
-    """ For .gmute command, globally mutes the replied/tagged person """
+    
     # Admin or creator check
     chat = await gspdr.get_chat()
     admin = chat.admin_rights
@@ -58,7 +58,7 @@ async def gspider(gspdr):
 
     # Check if the function running under SQL mode
     try:
-        from userbot.modules.sql_helper.gmute_sql import gmute
+        from sql_helpers.gmute_sql import gmute
     except AttributeError:
         await gspdr.edit(NO_SQL)
         return
@@ -82,5 +82,5 @@ async def gspider(gspdr):
            
  await borg.send_message(
             Config.G_BAN_LOGGER_GROUP,
-            "!gban [user](tg://user?id={}) {}".format(r_from_id, reason)
+            "!gmute [user](tg://user?id={}) {}".format(r_from_id, reason)
         )
