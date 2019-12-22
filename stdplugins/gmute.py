@@ -80,7 +80,7 @@ async def gspider(gspdr):
         else:
             await gspdr.edit("`Globally taped!`")
            
- await borg.send_message(
+            await borg.send_message(
             Config.G_BAN_LOGGER_GROUP,
             "!gmute [user](tg://user?id={}) {}".format(r_from_id, reason)
         )
