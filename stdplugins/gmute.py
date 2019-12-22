@@ -2,7 +2,7 @@ from uniborg.util import admin_cmd
 from telethon import events
 import asyncio
 
-@borg.on(admin_cmd("ungmute ?(.*)"), outgoing=True))
+@borg.on(admin_cmd("ungmute ?(.*)"), outgoing=True)
 async def ungmoot(un_gmute):
     """ For .ungmute command, ungmutes the target in the userbot """
     # Admin or creator check
@@ -43,7 +43,7 @@ async def ungmoot(un_gmute):
             "!gban [user](tg://user?id={}) {}".format(r_from_id, reason)
         )
 
-@borg.on(admin_cmd("ungmute ?(.*)"), outgoing=True))
+@borg.on(admin_cmd("ungmute ?(.*)"), outgoing=True)
 async def gspider(gspdr):
     """ For .gmute command, globally mutes the replied/tagged person """
     # Admin or creator check
