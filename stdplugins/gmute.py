@@ -6,7 +6,7 @@ from uniborg.util import admin_cmd
 from telethon import events
 import asyncio
 
-@borg.on(admin_cmd("ungmute ?(.*)"))
+@borg.on(admin_cmd(".ungmute"))
 async def ungmoot(un_gmute):
 
     # Admin or creator check
@@ -42,7 +42,7 @@ async def ungmoot(un_gmute):
         await un_gmute.edit("```Ungmuted Successfully```")
 
 
-@borg.on(admin_cmd("gmute ?(.*)"))
+@borg.on(admin_cmd("gmute"))
 async def gspider(gspdr):
     
     # Admin or creator check
