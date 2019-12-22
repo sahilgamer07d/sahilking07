@@ -2,7 +2,7 @@ from uniborg.util import admin_cmd
 from telethon import events
 import asyncio
 
-@borg.on(admin_cmd("ungmute ?(.*)")
+@borg.on(admin_cmd("ungmute ?(.*)"))
 async def ungmoot(un_gmute):
 
     # Admin or creator check
@@ -43,7 +43,7 @@ async def ungmoot(un_gmute):
             "!ungmute [user](tg://user?id={}) {}".format(r_from_id, reason)
         )
 
-@borg.on(admin_cmd("ungmute ?(.*)")
+@borg.on(admin_cmd("ungmute ?(.*)"))
 async def gspider(gspdr):
     
     # Admin or creator check
