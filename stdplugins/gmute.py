@@ -23,7 +23,6 @@ async def ungmoot(un_gmute):
     try:
         from sql_helpers.gmute_sql import ungmute
     except AttributeError:
-        await un_gmute.edit(NO_SQL)
         return
 
     user = await get_user_from_event(un_gmute)
@@ -60,7 +59,6 @@ async def gspider(gspdr):
     try:
         from sql_helpers.gmute_sql import gmute
     except AttributeError:
-        await gspdr.edit(NO_SQL)
         return
 
     user, reason = await get_user_from_event(gspdr)
