@@ -1,14 +1,8 @@
+from uniborg.util import admin_cmd
 from telethon import events
 import asyncio
-import os
-import sys
 
-
-@borg.on(events.NewMessage(pattern=r"\.ungmute", outgoing=True))
-async def _(event):
-    if event.fwd_from:
-        return
-
+@borg.on(admin_cmd("ungmute ?(.*)"), outgoing=True))
 async def ungmoot(un_gmute):
     """ For .ungmute command, ungmutes the target in the userbot """
     # Admin or creator check
@@ -44,17 +38,12 @@ async def ungmoot(un_gmute):
         # Inform about success
         await un_gmute.edit("```Ungmuted Successfully```")
 
-        if BOTLOG:
-            await un_gmute.client.send_message(
-                BOTLOG_CHATID, "#UNGMUTE\n"
-                f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-                f"CHAT: {un_gmute.chat.title}(`{un_gmute.chat_id}`)")
+        await borg.send_message(
+            Config.G_BAN_LOGGER_GROUP,
+            "!gban [user](tg://user?id={}) {}".format(r_from_id, reason)
+        )
 
-@borg.on(events.NewMessage(pattern=r"\.bombs", outgoing=True))
-async def _(event):
-    if event.fwd_from:
-        return
-
+@borg.on(admin_cmd("ungmute ?(.*)"), outgoing=True))
 async def gspider(gspdr):
     """ For .gmute command, globally mutes the replied/tagged person """
     # Admin or creator check
@@ -86,13 +75,12 @@ async def gspider(gspdr):
         await gspdr.edit(
             '`Error! User probably already gmuted.\nRe-rolls the tape.`')
     else:
-        if reason:
+    if reason:
             await gspdr.edit(f"`Globally taped!`Reason: {reason}")
         else:
             await gspdr.edit("`Globally taped!`")
-
-        if BOTLOG:
-            await gspdr.client.send_message(
-                BOTLOG_CHATID, "#GMUTE\n"
-                f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-                f"CHAT: {gspdr.chat.title}(`{gspdr.chat_id}`)")
+           
+ await borg.send_message(
+            Config.G_BAN_LOGGER_GROUP,
+            "!gban [user](tg://user?id={}) {}".format(r_from_id, reason)
+        )
