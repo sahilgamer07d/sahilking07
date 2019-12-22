@@ -1,4 +1,6 @@
-
+""" use admin command .ascii
+Credits : Only @AyushChatterjee 
+"""
 # Python code to convert an image to ASCII image. 
 
 import sys, random, argparse 
@@ -11,7 +13,9 @@ import math
 
 from PIL import Image 
 
-  
+@borg.on(admin_cmd("ascii (.*)"))
+
+
 # gray scale level values from:  
 # http://paulbourke.net/dataformats/asciiart/ 
 
