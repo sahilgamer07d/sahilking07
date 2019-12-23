@@ -2,6 +2,13 @@
 Made for BotHub By @AyushChatterjee
 """
 
+from telethon.errors import (BadRequestError, ChatAdminRequiredError,
+                             ImageProcessFailedError, PhotoCropSizeSmallError,
+                             UserAdminInvalidError)
+from telethon.tl.types import (PeerChannel, ChannelParticipantsAdmins,
+                               ChatAdminRights, ChatBannedRights,
+                               MessageEntityMentionName, MessageMediaPhoto,
+                               ChannelParticipantsBots)
 from uniborg.util import admin_cmd
 from telethon import events
 import asyncio
@@ -56,3 +63,28 @@ async def gspider(gspdr):
     await gspdr.edit("Grabs a huge, sticky duct tape!")
     # Inform about success
     await gspdr.edit(f"Globally taped!")
+
+
+
+@borg.on(incoming=True, disable_edited=True)
+async def muter(moot):
+    """ Used for deleting the messages of gmuted people """
+    try:
+        from sql_helpers.gmute_sql import is_gmuted
+    except AttributeError:
+        return
+    gmuted = is_gmuted(moot.sender_id)
+    rights = ChatBannedRights(
+        until_date=None,
+        send_messages=True,
+        send_media=True,
+        send_stickers=True,
+        send_gifs=True,
+        send_games=True,
+        send_inline=True,
+        embed_links=True,
+    )
+    if muted:
+    for i in gmuted:
+        if i.sender == str(moot.sender_id):
+            await moot.delete()
