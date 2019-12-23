@@ -90,5 +90,6 @@ async def muter(moot):
         embed_links=True,
     )
     if gmuted: 
-             sender == str(moot.sender_id):
+       for i in gmuted:
+             if str(i.sender) == str(moot.sender_id):
              await moot.delete()
