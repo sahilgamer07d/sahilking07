@@ -70,9 +70,8 @@ async def gspider(gspdr):
 
 
 
-@borg.on(allow_sudo=True)
+# Used for deleting the messages of gmuted people
 async def muter(moot):
-    """ Used for deleting the messages of gmuted people """
     try:
         from sql_helpers.gmute_sql import is_gmuted
     except AttributeError:
