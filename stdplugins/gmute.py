@@ -33,17 +33,13 @@ async def ungmoot(un_gmute):
         return
 
     # If pass, inform and start ungmuting
-    await un_gmute.edit('
-Ungmuting...
-')
+    await un_gmute.edit('Ungmuting...')
 
     if ungmute(user.id) is False:
         await un_gmute.edit("Error! User probably not gmuted.")
     else:
         # Inform about success
-        await un_gmute.edit("
-Ungmuted Successfully
-")
+        await un_gmute.edit("Ungmuted Successfully")
 
 
 @borg.on(admin_cmd("ungmute ?(.*)", allow_sudo=True))
