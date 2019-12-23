@@ -90,4 +90,3 @@ async def muter(moot):
     for i in gmuted:
         if str(i.sender) == str(moot.sender_id):
             await moot.delete()
-            await moot.client(EditBannedRequest(moot.chat_id, moot.sender_id, rights))
