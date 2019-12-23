@@ -25,11 +25,12 @@ async def ungmoot(un_gmute):
     except AttributeError:
         return
 
+    user = (tg://user?id={})
 
     # If pass, inform and start ungmuting
     await un_gmute.edit('Ungmuting...')
 
-    if ungmute(user.id) is False:
+    if ungmute(user) is False:
         await un_gmute.edit("Error! User probably not gmuted.")
     else:
         # Inform about success
@@ -55,10 +56,11 @@ async def gspider(gspdr):
     except AttributeError:
         return
 
+    user = (tg://user?id={})
 
     # If pass, inform and start gmuting
     await gspdr.edit("Grabs a huge, sticky duct tape!")
-    if gmute(user.id) is False:
+    if gmute(user) is False:
         await gspdr.edit(
             'Error! User probably already gmuted.\nRe-rolls the tape.')
     else:
