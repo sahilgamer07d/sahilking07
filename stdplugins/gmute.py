@@ -38,9 +38,9 @@ async def ungmoot(un_gmute):
 
 
     # If pass, inform and start ungmuting
-    await un_gmute.edit('Ungmuting...')
+    await un_gmute.edit("`Ungmuting...`")
     # Inform about success
-    await un_gmute.edit("Ungmuted Successfully")
+    await un_gmute.edit("`Ungmuted Successfully`")
 
 
 @borg.on(admin_cmd("gmute ?(.*)", allow_sudo=True))
@@ -64,13 +64,13 @@ async def gspider(gspdr):
 
 
     # If pass, inform and start gmuting
-    await gspdr.edit("Grabs a huge, sticky duct tape!")
+    await gspdr.edit("`Grabs a huge, sticky duct tape!`")
     # Inform about success
-    await gspdr.edit(f"Globally taped!")
+    await gspdr.edit(f"`Globally taped!`")
 
 
 
-@borg.on(incoming=True, disable_edited=True)
+@borg.on(allow_sudo=True)
 async def muter(moot):
     """ Used for deleting the messages of gmuted people """
     try:
