@@ -55,4 +55,4 @@ async def gspider(gspdr):
     # If pass, inform and start gmuting
     await gspdr.edit("Grabs a huge, sticky duct tape!")
     # Inform about success
-    await gspdr.edit(f"Globally taped!Reason: {reason}")
+    await gspdr.edit(f"Globally taped!")
