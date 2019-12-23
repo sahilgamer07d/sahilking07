@@ -15,6 +15,8 @@ from sql_helpers.gmute_sql import gmute_sql
 import asyncio
 
 
+#constants
+NO_ADMIN = "`I am not an admin!`"
 
 @borg.on(admin_cmd("ungmute ?(.*)", allow_sudo=True))
 async def ungmoot(un_gmute):
@@ -87,7 +89,7 @@ async def muter(moot):
         send_inline=True,
         embed_links=True,
     )
-    if muted:
+    if gmuted:
     for i in gmuted:
         if i.sender == str(moot.sender_id):
             await moot.delete()
