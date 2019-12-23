@@ -76,5 +76,3 @@ async def gspider(gspdr):
     else:
            if reason:
             await gspdr.edit(f"Globally taped!Reason: {reason}")
-        else:
-            await gspdr.edit("Globally taped!")
