@@ -25,7 +25,7 @@ async def ungmoot(un_gmute):
     except AttributeError:
         return
 
-    user = await get_user_from_event(un_gmute)
+    user = await get_user_from_ungmoot(un_gmute)
     user = user[0]
     if user:
         pass
@@ -61,7 +61,7 @@ async def gspider(gspdr):
     except AttributeError:
         return
 
-    user, reason = await get_user_from_event(gmute)
+    user, reason = await get_user_from_gspider(gspdr)
     user = user[0]
     if user:
         pass
