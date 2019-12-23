@@ -25,12 +25,6 @@ async def ungmoot(un_gmute):
     except AttributeError:
         return
 
-    user = await get_user_from_ungmoot(un_gmute)
-    user = user[0]
-    if user:
-        pass
-    else:
-        return
 
     # If pass, inform and start ungmuting
     await un_gmute.edit('Ungmuting...')
@@ -61,12 +55,6 @@ async def gspider(gspdr):
     except AttributeError:
         return
 
-    user, reason = await get_user_from_gspider(gspdr)
-    user = user[0]
-    if user:
-        pass
-    else:
-        return
 
     # If pass, inform and start gmuting
     await gspdr.edit("Grabs a huge, sticky duct tape!")
