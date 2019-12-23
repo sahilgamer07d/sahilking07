@@ -6,7 +6,7 @@ from uniborg.util import admin_cmd
 from telethon import events
 import asyncio
 
-@borg.on(admin_cmd("ungmute"))
+@borg.on(admin_cmd("ungmute ?(.*)", allow_sudo=True))
 async def ungmoot(un_gmute):
 
     # Admin or creator check
@@ -33,16 +33,20 @@ async def ungmoot(un_gmute):
         return
 
     # If pass, inform and start ungmuting
-    await un_gmute.edit('```Ungmuting...```')
+    await un_gmute.edit('
+Ungmuting...
+')
 
     if ungmute(user.id) is False:
-        await un_gmute.edit("`Error! User probably not gmuted.`")
+        await un_gmute.edit("Error! User probably not gmuted.")
     else:
         # Inform about success
-        await un_gmute.edit("```Ungmuted Successfully```")
+        await un_gmute.edit("
+Ungmuted Successfully
+")
 
 
-@borg.on(admin_cmd("gmute"))
+@borg.on(admin_cmd("ungmute ?(.*)", allow_sudo=True))
 async def gspider(gspdr):
     
     # Admin or creator check
@@ -61,19 +65,20 @@ async def gspider(gspdr):
     except AttributeError:
         return
 
-    user, reason = await get_user_from_event(gspdr)
+    user, reason = await get_user_from_event(gmute)
+    user = user[0]
     if user:
         pass
     else:
         return
 
     # If pass, inform and start gmuting
-    await gspdr.edit("`Grabs a huge, sticky duct tape!`")
+    await gspdr.edit("Grabs a huge, sticky duct tape!")
     if gmute(user.id) is False:
         await gspdr.edit(
-            '`Error! User probably already gmuted.\nRe-rolls the tape.`')
+            'Error! User probably already gmuted.\nRe-rolls the tape.')
     else:
-        if reason:
-            await gspdr.edit(f"`Globally taped!`Reason: {reason}")
+           if reason:
+            await gspdr.edit(f"Globally taped!Reason: {reason}")
         else:
-            await gspdr.edit("`Globally taped!`")
+            await gspdr.edit("Globally taped!")
