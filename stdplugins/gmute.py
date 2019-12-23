@@ -11,7 +11,6 @@ from telethon.tl.types import (PeerChannel, ChannelParticipantsAdmins,
                                ChannelParticipantsBots)
 from uniborg.util import admin_cmd
 from telethon import events
-from sql_helpers.gmute_sql import gmute_sql
 import asyncio
 
 
