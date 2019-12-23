@@ -89,7 +89,12 @@ async def muter(moot):
         send_inline=True,
         embed_links=True,
     )
-    if gmuted:
+    if muted:
+    for i in muted:
+            if str(i.sender) == str(moot.sender_id):
+                await moot.delete()
+                await moot.client(
+                    EditBannedRequest(moot.chat_id, moot.sender_id, rights))
     for i in gmuted:
         if i.sender == str(moot.sender_id):
             await moot.delete()
