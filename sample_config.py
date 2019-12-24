@@ -25,7 +25,7 @@ class Config(object):
     # This is required for the plugins involving the file system.
     TMP_DOWNLOAD_DIRECTORY = os.environ.get("TMP_DOWNLOAD_DIRECTORY", "./DOWNLOADS/")
     # This is required for the speech to text module. Get your USERNAME from https://console.bluemix.net/docs/services/speech-to-text/getting-started.html
-    IBM_WATSON_CRED_USERNAME = os.environ.get("IBM_WATSON_CRED_USERNAME", None)
+    IBM_WATSON_CRED_URL = os.environ.get("IBM_WATSON_CRED_URL", None)
     IBM_WATSON_CRED_PASSWORD = os.environ.get("IBM_WATSON_CRED_PASSWORD", None)
     # This is required for the hash to torrent file functionality to work.
     HASH_TO_TORRENT_API = os.environ.get("HASH_TO_TORRENT_API", "https://example.com/torrent/{}");
@@ -36,7 +36,6 @@ class Config(object):
     # Send .get_id in any group with all your administration bots (added)
     G_BAN_LOGGER_GROUP = int(os.environ.get("G_BAN_LOGGER_GROUP", -100123456789))
     # TG API limit. An album can have atmost 10 media!
-    GOOGLE_SEARCH_COUNT_LIMIT = int(os.environ.get("GOOGLE_SEARCH_COUNT_LIMIT", 9))
     TG_GLOBAL_ALBUM_LIMIT = int(os.environ.get("TG_GLOBAL_ALBUM_LIMIT", 9))
     # Telegram BOT Token from @BotFather
     TG_BOT_TOKEN_BF_HER = os.environ.get("TG_BOT_TOKEN_BF_HER", None)
@@ -62,12 +61,12 @@ class Config(object):
     # specify LOAD and NO_LOAD
     LOAD = []
     # foloowing plugins won't work on Heroku,
-    # because of their ephemeral file system
+    # ⚡Remove This To Make Them Work But Would Make Bot Unstable AF...⚡
     NO_LOAD = [
-        "fwd",
-        "telegraph",
-        "afk",
-        "gban"
+                    "pmpermit",
+                    "left",
+                    "hand",   
+                    "autores", 
     ]
     # Get your own API key from https://www.remove.bg/ or
     # feel free to use http://telegram.dog/Remove_BGBot
@@ -87,6 +86,8 @@ class Config(object):
     # can be None in which case plugins requiring
     # DataBase would not work
     DB_URI = os.environ.get("DATABASE_URL", None)
+    #MongoDB
+    MONGO_URI = os.environ.get("MONGO_URI", None)
     # number of rows of buttons to be displayed in .helpme command
     NO_OF_BUTTONS_DISPLAYED_IN_H_ME_CMD = int(os.environ.get("NO_OF_BUTTONS_DISPLAYED_IN_H_ME_CMD", 5))
     # specify command handler that should be used for the plugins
@@ -100,25 +101,44 @@ class Config(object):
     VERY_STREAM_LOGIN = os.environ.get("VERY_STREAM_LOGIN", None)
     VERY_STREAM_KEY = os.environ.get("VERY_STREAM_KEY", None)
     TEMP_DIR = os.environ.get("TEMP_DIR", None)
-    CHANNEL_ID = int(os.environ.get("CHANNEL_ID", 1234))
-    #MongoDB
-    MONGO_URI = os.environ.get("MONGO_URI", None)
-    #Lydia API
-    LYDIA_API = os.environ.get("LYDIA_API",None)
-    #Google Chrome Stuff
-    CHROME_DRIVER = os.environ.get("CHROME_DRIVER", None)
-    GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN", None)
+    CHANNEL_ID = os.environ.get("CHANNEL_ID", None)
     # Google Drive ()
     G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID", None)
     G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", None)
     GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", None)
     AUTH_TOKEN_DATA = os.environ.get("AUTH_TOKEN_DATA", None)
-    if AUTH_TOKEN_DATA != None:
-        os.makedirs(TMP_DOWNLOAD_DIRECTORY)
-        t_file = open(TMP_DOWNLOAD_DIRECTORY+"auth_token.txt","w")
-        t_file.write(AUTH_TOKEN_DATA)
-        t_file.close()
-
+    os.makedirs(TMP_DOWNLOAD_DIRECTORY, exist_ok=True)
+    t_file = open(TMP_DOWNLOAD_DIRECTORY+"auth_token.txt","w")
+    t_file.write(AUTH_TOKEN_DATA)
+    t_file.close()
+    #
+    TELE_GRAM_2FA_CODE = os.environ.get("TELE_GRAM_2FA_CODE", None)
+    #
+    GROUP_REG_SED_EX_BOT_S = os.environ.get("GROUP_REG_SED_EX_BOT_S", r"(regex|moku|BananaButler_|rgx|l4mR)bot")
+    # rapidleech plugins	
+    OPEN_LOAD_LOGIN = os.environ.get("OPEN_LOAD_LOGIN", "0")	
+    OPEN_LOAD_KEY = os.environ.get("OPEN_LOAD_KEY", "0")
+    # Google Chrome Selenium Stuff
+    # taken from https://github.com/jaskaranSM/UniBorg/blob/9072e3580cc6c98d46f30e41edbe73ffc9d850d3/sample_config.py#L104-L106
+    GOOGLE_CHROME_DRIVER = os.environ.get("GOOGLE_CHROME_DRIVER", None)
+    GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN", None)
+    #
+    LYDIA_API = os.environ.get("LYDIA_API", None)
+    #
+    HEROKU_MEMEZ = bool(os.environ.get("HEROKU_MEMEZ", "False"))
+    HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
+    HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
+    #
+    CHROME_DRIVER = os.environ.get("CHROME_DRIVER", None)
+    CHROME_BIN = os.environ.get("CHROME_BIN", None)
+    # define "heroku_link" in conig_vars 
+    HEROKU_LINK = os.environ.get("HEROKU_LINK", None)
+    # define "repo_link" in conig_vars
+    REPO_LINK = os.environ.get("REPO_LINK", None)
+    # define "repo_link" in conig_vars
+    PACKS_CONTENT = os.environ.get("PACKS_CONTENT", None)
+    #
+    BOT_HUB = os.environ.get("BOT_HUB", None)
 
 class Production(Config):
     LOGGER = False
