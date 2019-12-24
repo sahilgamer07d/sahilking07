@@ -26,7 +26,7 @@ async def _(event):
             Config.G_BAN_LOGGER_GROUP,
             "!gban [user](tg://user?id={}) {}".format(r_from_id, reason)
         )
-    await event.edit("GBANNED USER!"
+    await event.edit("GBANNED USER!")
 
 
 @borg.on(admin_cmd(pattern="ungban ?(.*)", allow_sudo=True))
@@ -44,4 +44,4 @@ async def _(event):
             Config.G_BAN_LOGGER_GROUP,
             "!ungban [user](tg://user?id={}) {}".format(r_from_id, reason)
         )
-    await event.edit("UNGBANNED USER!"
+    await event.edit("UNGBANNED USER!")
