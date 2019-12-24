@@ -8,7 +8,7 @@ import asyncio
 from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="gmute ?(.*)", allow_sudo=True))
+@borg.on(admin_cmd(pattern="gban ?(.*)", allow_sudo=True))
 async def _(event):
     if Config.G_BAN_LOGGER_GROUP is None:
         await event.edit("ENV VAR is not set. This module will not work.")
@@ -26,10 +26,10 @@ async def _(event):
             Config.G_BAN_LOGGER_GROUP,
             "!gban [user](tg://user?id={}) {}".format(r_from_id, reason)
         )
-    await event.delete()
+    await event.edit("GBANNED USER!"
 
 
-@borg.on(admin_cmd(pattern="gmute ?(.*)", allow_sudo=True))
+@borg.on(admin_cmd(pattern="ungban ?(.*)", allow_sudo=True))
 async def _(event):
     if Config.G_BAN_LOGGER_GROUP is None:
         await event.edit("ENV VAR is not set. This module will not work.")
@@ -44,4 +44,4 @@ async def _(event):
             Config.G_BAN_LOGGER_GROUP,
             "!ungban [user](tg://user?id={}) {}".format(r_from_id, reason)
         )
-    await event.delete()
+    await event.edit("UNGBANNED USER!"
