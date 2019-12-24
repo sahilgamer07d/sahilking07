@@ -13,3 +13,4 @@ chatterbot_corpus
 -r ./requirements-stdborg.txt
 gitpython
 heroku
+dnspython
