@@ -5,6 +5,7 @@ import asyncio
 import importlib.util
 import logging
 from pathlib import Path
+from pymongo import MongoClient
 
 from telethon import TelegramClient
 import telethon.utils
@@ -28,7 +29,7 @@ class Uniborg(TelegramClient):
         self._plugins = {}
         self._plugin_path = plugin_path
         self.config = api_config
-
+        self.mongo = MongoClient(os.environ.get("MONGO_URI",None))
         kwargs = {
             "api_id": 6,
             "api_hash": "eb06d4abfb49dc3eeb1aeb98ae0f581e",
