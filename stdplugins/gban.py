@@ -58,7 +58,7 @@ async def _(event):
             "GBANNED (tg://user?id={}) {}".format(r_from_id, reason)
         )
     rights = gbanned_rights
-    await event.edit("`GBANNED` [{}](tg://user?id={}).".format(r_from_id, reason)
+    await event.edit("`GBANNED` [{}](tg://user?id={}).".format(r_from_id, reason))
     
 
 @borg.on(admin_cmd(pattern="gmute ?(.*)", allow_sudo=True))
@@ -77,4 +77,4 @@ async def _(event):
             "UNGBANNED (tg://user?id={}) {}".format(r_from_id, reason)
         )
     rights = ungbanned_rights
-    await event.edit("`UN-GBANNED` [{}](tg://user?id={}).format(r_from_id, reason)
+    await event.edit("`UN-GBANNED` [{}](tg://user?id={})".format(r_from_id, reason))
