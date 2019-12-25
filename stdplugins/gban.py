@@ -57,8 +57,7 @@ async def _(event):
             Config.G_BAN_LOGGER_GROUP,
             "GBANNED (tg://user?id={}) {}".format(r_from_id, reason)
         )
-    if input_cmd == "gban":
-       rights = gbanned_rights
+    rights = gbanned_rights
     await event.edit("`GBANNED` [{}](tg://user?id={}).".format(str(user_id),str(user_id)))
     
 
@@ -77,6 +76,5 @@ async def _(event):
             Config.G_BAN_LOGGER_GROUP,
             "UNGBANNED (tg://user?id={}) {}".format(r_from_id, reason)
         )
-    if input_cmd == "ungban":
-         rights = ungbanned_rights
+    rights = ungbanned_rights
     await event.edit("`UN-GBANNED` [{}](tg://user?id={}).".format(str(user_id),str(user_id)))
