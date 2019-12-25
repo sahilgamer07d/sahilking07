@@ -19,7 +19,7 @@ async def _(event):
     animation_interval = 1
     
 
-    animation_ttl = range(0, 700)
+    animation_ttl = range(0, 105)
 
     input_str = event.pattern_match.group(1)
 
@@ -67,7 +67,7 @@ async def _(event):
             ";____;",
             ";___;",
             ";__;",
-            "`You made me CRY`"
+            "`You made me CRY`",
         ]
 
         for i in animation_ttl:
