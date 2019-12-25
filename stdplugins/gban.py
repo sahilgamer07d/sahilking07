@@ -29,7 +29,6 @@ async def _(event):
             "!gban [user](tg://user?id={}) {}".format(r_from_id, reason)
         )
     await event.delete()
-    await.event.edit("`USER IS GBANNED!`)
 
 
 @borg.on(admin_cmd(pattern="ungban ?(.*)"))
@@ -48,4 +47,3 @@ async def _(event):
             "!ungban [user](tg://user?id={}) {}".format(r_from_id, reason)
         )
     await event.delete()
-    await.event.edit("`USER IS UNGBANNED!`)
