@@ -1,34 +1,18 @@
 """Use cmd `.cry` to cry"""
 
 from telethon import events
-
 import asyncio
 
-
-
-
-
 @borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
-
     if event.fwd_from:
-
         return
-
     animation_interval = 1
-    
-
     animation_ttl = range(0, 700)
-
     input_str = event.pattern_match.group(1)
-
     if input_str == "cry":
-
-        await event.edit(input_str)
-
+       await event.edit(input_str)
          animation_chars = [
-
             ";__;",
             ";___;",
             ";____;",
@@ -70,10 +54,5 @@ async def _(event):
             ";__;,
             "`You made me CRY`"
         ]
-
-            
-
         for i in animation_ttl:
-
-
             await event.edit(animation_chars[i % 44])
