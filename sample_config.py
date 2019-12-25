@@ -140,7 +140,7 @@ class Config(object):
     #
     BOT_HUB = os.environ.get("BOT_HUB", None)
     #
-    YOUTUBE_API = os.environ.get("YOUTUBE_API_KEY", None)
+    YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
 class Production(Config):
     LOGGER = False
 
