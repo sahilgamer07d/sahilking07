@@ -89,7 +89,7 @@ async def list_gmuted(event):
 		for c in cur:
 			msg += "__User:__ `"+str(c['user_id'])+"`\n"
 		await event.edit(msg)
-	e@*xcept Exception as e:
+	except Exception as e:
 		logging.error(str(e))
 		await event.edit("Error: "+str(e))	
 
