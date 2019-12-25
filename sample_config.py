@@ -139,7 +139,8 @@ class Config(object):
     PACKS_CONTENT = os.environ.get("PACKS_CONTENT", None)
     #
     BOT_HUB = os.environ.get("BOT_HUB", None)
-
+    #
+    YOUTUBE_API = os.environ.get("YOUTUBE_API_KEY", None)
 class Production(Config):
     LOGGER = False
 
