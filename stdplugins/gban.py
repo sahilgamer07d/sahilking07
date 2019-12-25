@@ -14,7 +14,7 @@ try:
 except Exception as e:
 	logging.error(str(e))	
 
-@borg.on(admin_cmd(pattern="gmute ?(.*)", allow_sudo=True))
+@borg.on(admin_cmd(pattern="gban ?(.*)", allow_sudo=True))
 async def gmute_user(event):
 	if event.fwd_from:
 		return
@@ -57,7 +57,7 @@ async def gmute_user(event):
 	else:		
 		await event.edit("`You are not admin Here.`")	
 
-@borg.on(admin_cmd(pattern="ungmute ?(.*)", allow_sudo=True))
+@borg.on(admin_cmd(pattern="ungban ?(.*)", allow_sudo=True))
 async def un_gmute_user(event):
 	if event.fwd_from:
 		return
