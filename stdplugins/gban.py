@@ -14,19 +14,7 @@ from telethon.tl.types import ChatBannedRights
 from uniborg.util import admin_cmd
 
 
-unbanned_rights = ChatBannedRights(
-    until_date=None,
-    view_messages=None,
-    send_messages=None,
-    send_media=None,
-    send_stickers=None,
-    send_gifs=None,
-    send_games=None,
-    send_inline=None,
-    embed_links=None
-)
-
-banned_rights = ChatBannedRights(
+gbanned_rights = ChatBannedRights(
     until_date=None,
     view_messages=True,
     send_messages=True,
@@ -36,6 +24,18 @@ banned_rights = ChatBannedRights(
     send_games=True,
     send_inline=True,
     embed_links=True
+)
+
+ungbanned_rights = ChatBannedRights(
+    until_date=None,
+    view_messages=None,
+    send_messages=None,
+    send_media=None,
+    send_stickers=None,
+    send_gifs=None,
+    send_games=None,
+    send_inline=None,
+    embed_links=None
 )
 
 
@@ -57,8 +57,9 @@ async def _(event):
             Config.G_BAN_LOGGER_GROUP,
             "GBANNED (tg://user?id={}) {}".format(r_from_id, reason)
         )
-    rights = banned_rights
-    await event.edit("GBANNED (tg://user?id={}) {}")
+    if input_cmd == "gban":
+       rights = gbanned_rights
+    await event.edit("`GBANNED` [{}](tg://user?id={}).".format(str(user_id),str(user_id)))
     
 
 @borg.on(admin_cmd(pattern="ungban ?(.*)"))
@@ -76,5 +77,6 @@ async def _(event):
             Config.G_BAN_LOGGER_GROUP,
             "UNGBANNED (tg://user?id={}) {}".format(r_from_id, reason)
         )
-    rights = unbanned_rights
-    await event.edit("UN-GBANNED (tg://user?id={}) {}")
+    if input_cmd == "ungban":
+         rights = ungbanned_rights
+    await event.edit("`UN-GBANNED` [{}](tg://user?id={}).".format(str(user_id),str(user_id)))
