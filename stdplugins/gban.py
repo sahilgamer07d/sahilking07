@@ -3,11 +3,40 @@ Group Administrations bots where you are SUDO
 Available Commands:
 .gban REASON
 .ungban REASON"""
-import asyncio
 
+import asyncio
 from telethon import events
 from uniborg.util import admin_cmd
 from sample_config import Config
+from datetime import datetime
+from telethon.tl.functions.channels import EditBannedRequest
+from telethon.tl.types import ChatBannedRights
+from uniborg.util import admin_cmd
+
+
+unbanned_rights = ChatBannedRights(
+    until_date=None,
+    view_messages=None,
+    send_messages=None,
+    send_media=None,
+    send_stickers=None,
+    send_gifs=None,
+    send_games=None,
+    send_inline=None,
+    embed_links=None
+)
+
+banned_rights = ChatBannedRights(
+    until_date=None,
+    view_messages=True,
+    send_messages=True,
+    send_media=True,
+    send_stickers=True,
+    send_gifs=True,
+    send_games=True,
+    send_inline=True,
+    embed_links=True
+)
 
 
 @borg.on(admin_cmd(pattern="gban ?(.*)"))
@@ -26,10 +55,11 @@ async def _(event):
             r_from_id = r.from_id
         await borg.send_message(
             Config.G_BAN_LOGGER_GROUP,
-            "!gban [user](tg://user?id={}) {}".format(r_from_id, reason)
+            "GBANNED (tg://user?id={}) {}".format(r_from_id, reason)
         )
-    await event.delete()
-
+    rights = banned_rights
+    await event.edit("GBANNED (tg://user?id={}) {}")
+    
 
 @borg.on(admin_cmd(pattern="ungban ?(.*)"))
 async def _(event):
@@ -44,6 +74,7 @@ async def _(event):
         r_from_id = r.from_id
         await borg.send_message(
             Config.G_BAN_LOGGER_GROUP,
-            "!ungban [user](tg://user?id={}) {}".format(r_from_id, reason)
+            "UNGBANNED (tg://user?id={}) {}".format(r_from_id, reason)
         )
-    await event.delete()
+    rights = unbanned_rights
+    await event.edit("UN-GBANNED (tg://user?id={}) {}")
