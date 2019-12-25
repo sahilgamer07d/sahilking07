@@ -39,7 +39,7 @@ ungbanned_rights = ChatBannedRights(
 )
 
 
-@borg.on(admin_cmd(pattern="gban ?(.*)"))
+@borg.on(admin_cmd(pattern="gban ?(.*)", allow_sudo=True))
 async def _(event):
     if Config.G_BAN_LOGGER_GROUP is None:
         await event.edit("ENV VAR is not set. This module will not work.")
@@ -62,7 +62,7 @@ async def _(event):
     await event.edit("`GBANNED` [{}](tg://user?id={}).".format(str(user_id),str(user_id)))
     
 
-@borg.on(admin_cmd(pattern="ungban ?(.*)"))
+@borg.on(admin_cmd(pattern="gmute ?(.*)", allow_sudo=True))
 async def _(event):
     if Config.G_BAN_LOGGER_GROUP is None:
         await event.edit("ENV VAR is not set. This module will not work.")
