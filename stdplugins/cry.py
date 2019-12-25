@@ -11,8 +11,8 @@ async def _(event):
     animation_ttl = range(0, 700)
     input_str = event.pattern_match.group(1)
     if input_str == "cry":
-       await event.edit(input_str)
-         animation_chars = [
+    await event.edit(input_str)
+    animation_chars = [
             ";__;",
             ";___;",
             ";____;",
@@ -55,4 +55,4 @@ async def _(event):
             "`You made me CRY`"
         ]
         for i in animation_ttl:
-            await event.edit(animation_chars[i % 44])
+        await event.edit(animation_chars[i % 44])
