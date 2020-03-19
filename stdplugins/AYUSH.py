@@ -1,6 +1,6 @@
 """Emoji
 Available Commands:
-.ayush"""
+.sahil"""
 
 from telethon import events
 
@@ -24,61 +24,61 @@ async def _(event):
 
     input_str = event.pattern_match.group(1)
 
-    if input_str == "ayush":
+    if input_str == "sahil":
 
         await event.edit(input_str)
 
         animation_chars = [
 
-            "👑AYUSH👑👑👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑",
+            "👑sahil👑👑👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑",
 
-            "◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑",
+            "◼️👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑",
 
-            "◼️◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑",
+            "◼️◼️👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑",
 
-            "◼️◼️◼️️👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑",
+            "◼️◼️◼️️👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑",
 
-            "◼️◼️◼️◼️👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑",
+            "◼️◼️◼️◼️👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑",
 
-            "‎◼️◼️◼️◼️◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑",
+            "‎◼️◼️◼️◼️◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑",
 
-            "◼️◼️◼️◼️◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑",
+            "◼️◼️◼️◼️◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑",
 
-            "◼️◼️◼️◼️◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑",
+            "◼️◼️◼️◼️◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑",
 
-            "◼️◼️◼️◼️◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑",
+            "◼️◼️◼️◼️◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑👑sahil👑",
 
-            "◼️◼️◼️◼️◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️",
+            "◼️◼️◼️◼️◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️",
 
-            "◼️◼️◼️◼️◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️◼️",
+            "◼️◼️◼️◼️◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑◼️◼️",
 
-            "◼️◼️◼️◼️◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑◼️◼️◼️",
+            "◼️◼️◼️◼️◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑◼️◼️◼️",
 
-            "◼️◼️◼️◼️◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑◼️◼️◼️◼️",
+            "◼️◼️◼️◼️◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑◼️◼️◼️◼️",
 
-            "◼️◼️◼️◼️◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️◼️◼️◼️◼️",
+            "◼️◼️◼️◼️◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n◼️◼️◼️◼️◼️",
 
-            "◼️◼️◼️◼️◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️◼️◼️◼️◼️",
+            "◼️◼️◼️◼️◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n◼️👑sahil👑👑sahil👑👑sahil👑◼️\n◼️◼️◼️◼️◼️",
 
-            "◼️◼️◼️◼️◼️\n👑AYUSH👑👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️◼️◼️◼️◼️",
+            "◼️◼️◼️◼️◼️\n👑sahil👑👑sahil👑👑sahil👑👑sahil👑◼️\n◼️👑sahil👑👑sahil👑👑sahil👑◼️\n◼️👑sahil👑👑sahil👑👑sahil👑◼️\n◼️◼️◼️◼️◼️",
 
-            "◼️◼️◼️◼️◼️\n◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️◼️◼️◼️◼️",
+            "◼️◼️◼️◼️◼️\n◼️👑sahil👑👑sahil👑👑sahil👑◼️\n◼️👑sahil👑👑sahil👑👑sahil👑◼️\n◼️👑sahil👑👑sahil👑👑sahil👑◼️\n◼️◼️◼️◼️◼️",
 
-            "◼️◼️◼️◼️◼️\n◼️◼️👑AYUSH👑👑AYUSH👑◼️\n◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️◼️◼️◼️◼️",
+            "◼️◼️◼️◼️◼️\n◼️◼️👑sahil👑👑sahil👑◼️\n◼️👑sahil👑👑sahil👑👑sahil👑◼️\n◼️👑sahil👑👑sahil👑👑sahil👑◼️\n◼️◼️◼️◼️◼️",
 
-            "◼️◼️◼️◼️◼️\n◼️◼️◼️👑AYUSH👑◼️\n◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️◼️◼️◼️◼️",
+            "◼️◼️◼️◼️◼️\n◼️◼️◼️👑sahil👑◼️\n◼️👑sahil👑👑sahil👑👑sahil👑◼️\n◼️👑sahil👑👑sahil👑👑sahil👑◼️\n◼️◼️◼️◼️◼️",
 
-            "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️◼️◼️◼️◼️",
+            "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️👑sahil👑👑sahil👑👑sahil👑◼️\n◼️👑sahil👑👑sahil👑👑sahil👑◼️\n◼️◼️◼️◼️◼️",
 
-            "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️👑AYUSH👑👑AYUSH👑◼️◼️\n◼️👑AYUSH👑👑AYUSH👑👑AYUSH👑◼️\n◼️◼️◼️◼️◼️",
+            "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️👑sahil👑👑sahil👑◼️◼️\n◼️👑sahil👑👑sahil👑👑sahil👑◼️\n◼️◼️◼️◼️◼️",
 
-            "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️👑AYUSH👑👑AYUSH👑◼️◼️\n◼️👑AYUSH👑👑AYUSH👑◼️◼️\n◼️◼️◼️◼️◼️",
+            "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️👑sahil👑👑sahil👑◼️◼️\n◼️👑sahil👑👑sahil👑◼️◼️\n◼️◼️◼️◼️◼️",
 
-            "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️👑AYUSH👑👑AYUSH👑◼️◼️\n◼️👑AYUSH👑◼️◼️◼️\n◼️◼️◼️◼️◼️",
+            "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️👑sahil👑👑sahil👑◼️◼️\n◼️👑sahil👑◼️◼️◼️\n◼️◼️◼️◼️◼️",
 
-            "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️👑AYUSH👑👑AYUSH👑◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
+            "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️👑sahil👑👑sahil👑◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
 
-            "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️👑AYUSH👑◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
+            "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️👑sahil👑◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
 
             "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
 
@@ -90,7 +90,7 @@ async def _(event):
 
             "◼️",
             
-            "👑 AYUSH 👑"
+            "👑 sahil 👑"
         ]
 
         for i in animation_ttl:
